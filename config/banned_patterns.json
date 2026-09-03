@@ -1,0 +1,3 @@
+cd 01_Core_Source
+python3 nexus_daemon.py
+
