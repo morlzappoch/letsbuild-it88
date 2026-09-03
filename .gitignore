@@ -1,0 +1,82 @@
+
+# === Clean Hands Clean Money FAM - Git Ignore Rules ===
+
+# 🔒 SECURITY & SECRETS (Never upload these!)
+config.json
+*.env
+*.pem
+*.key
+credentials/
+
+# 🛠️ SYSTEM ENVIRONMENT & DEPENDENCIES
+__pycache__/
+*.pyc
+.venv/
+env/
+node_modules/
+.DS_Store
+
+# 📦 TEMPORARY BUILD & ZIP OUTPUTS
+*.zip
+*.tar.gz
+build/
+dist/
+Evidence_Packages/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# React Native / Metro
+.metro-health-check*
+node_modules/
+
+# Build Outputs (Crucial: Do not upload compiled binaries)
+android/app/build/
+ios/build/
+*.apk
+*.aab
+*.ipa
+*.keystore
+*.jks
+*.p12
+
+# Secrets & Keys (CRITICAL: Never commit these)
+.env
+.env.local
+.env.production
+*.pem
+*.key
+private_key.json
+credentials.json
+secrets.json
+
+# Debug Symbols (Keep offline for obfuscation)
+debug_symbols/
+*.symbols
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test Coverage
+coverage/
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
