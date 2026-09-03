@@ -1,0 +1,25 @@
+{
+  "project_id": "test_proj",
+  "name": "Test Project",
+  "description": "Quick test",
+  "created_at": "2026-08-18T16:47:11.367593",
+  "status": "active",
+  "moprotect_protocol": true,
+  "tasks": {
+    "task1": {
+      "task_id": "task1",
+      "title": "Test Task",
+      "description": "",
+      "status": "pending",
+      "moprotect_step": "sanitization",
+      "created_at": "2026-08-18T16:48:36.578380",
+      "started_at": null,
+      "completed_at": null,
+      "error": null,
+      "retry_count": 0,
+      "depends_on": []
+    }
+  },
+  "checkpoints_count": 0,
+  "metadata": {}
+}
