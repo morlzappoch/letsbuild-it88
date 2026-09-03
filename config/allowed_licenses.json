@@ -1,0 +1,72 @@
+{
+  "description": "Whitelist of licenses compatible with proprietary/commercial use",
+  "last_updated": "2026-01-01",
+  "allowed_licenses": [
+    {
+      "name": "MIT",
+      "spdx_id": "MIT",
+      "compatible": true,
+      "notes": "Permissive, allows commercial use and modification"
+    },
+    {
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "compatible": true,
+      "notes": "Permissive, includes patent protection"
+    },
+    {
+      "name": "BSD 2-Clause",
+      "spdx_id": "BSD-2-Clause",
+      "compatible": true,
+      "notes": "Permissive, simple attribution required"
+    },
+    {
+      "name": "BSD 3-Clause",
+      "spdx_id": "BSD-3-Clause",
+      "compatible": true,
+      "notes": "Permissive with non-endorsement clause"
+    },
+    {
+      "name": "ISC License",
+      "spdx_id": "ISC",
+      "compatible": true,
+      "notes": "Permissive, functionally equivalent to MIT"
+    },
+    {
+      "name": "Unlicense",
+      "spdx_id": "Unlicense",
+      "compatible": true,
+      "notes": "Public domain dedication"
+    },
+    {
+      "name": "Public Domain",
+      "spdx_id": "CC0-1.0",
+      "compatible": true,
+      "notes": "Public domain dedication"
+    },
+    {
+      "name": "Zlib License",
+      "spdx_id": "Zlib",
+      "compatible": true,
+      "notes": "Permissive, simple license"
+    },
+    {
+      "name": "Boost Software License 1.0",
+      "spdx_id": "BSL-1.0",
+      "compatible": true,
+      "notes": "Permissive for both source and binary"
+    },
+    {
+      "name": "MPL 2.0",
+      "spdx_id": "MPL-2.0",
+      "compatible": true,
+      "notes": "Weak copyleft, files can be used in proprietary software"
+    }
+  ],
+  "additional_notes": [
+    "Licenses NOT in this whitelist (especially GPL/AGPL) are prohibited",
+    "Dual-licensed code must use a whitelisted license option",
+    "Always verify dependency licenses during dependency updates",
+    "Maintain an audit log of all license compliance checks"
+  ]
+}
