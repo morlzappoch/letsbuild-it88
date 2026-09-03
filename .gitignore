@@ -1,0 +1,149 @@
+
+# === Clean Hands Clean Money FAM - Git Ignore Rules ===
+
+# 🔒 SECURITY & SECRETS (Never upload these!)
+config.json
+*.env
+*.pem
+*.key
+credentials/
+
+# 🛠️ SYSTEM ENVIRONMENT & DEPENDENCIES
+__pycache__/
+*.pyc
+.venv/
+env/
+node_modules/
+.DS_Store
+
+# 📦 TEMPORARY BUILD & ZIP OUTPUTS
+*.zip
+*.tar.gz
+build/
+dist/
+Evidence_Packages/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# React Native / Metro
+.metro-health-check*
+node_modules/
+
+# Build Outputs (Crucial: Do not upload compiled binaries)
+android/app/build/
+ios/build/
+*.apk
+*.aab
+*.ipa
+*.keystore
+*.jks
+*.p12
+
+# Secrets & Keys (CRITICAL: Never commit these)
+.env
+.env.local
+.env.production
+*.pem
+*.key
+private_key.json
+credentials.json
+secrets.json
+
+# Debug Symbols (Keep offline for obfuscation)
+debug_symbols/
+*.symbols
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test Coverage
+coverage/
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+Register a new OAuth app
+
+Application name
+
+    Something users will recognize and trust.
+
+Homepage URL
+    Url must be a valid URL
+
+Application description
+    MMM.CLEANHANDSCLEANMONEYFAM,COM$
+
+    This is displayed to all users of your application.
+
+Redirect URIs
+The URIs to redirect to after a user authorizes an app. You may add up to 10 redirect URIs. Wildcard matching allows tokens to be sent to all subdomains and additional paths of the redirect URI. Only enable this if you are sure you have control over all possible matches. Learn more about secure use of redirect URIs.
+Redirect URI
+
+Callback URL must be a valid URL
+Allow wildcard matching
+Redirect URI
+Allow wildcard matching
+Enable Device Flow
+
+Allow this OAuth App to authorize users via the device flow.
+Expire user access tokens
+
+This will provide a refresh_token which can be used to request an updated access token when this access token expires.
+
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
+    Com
+# Deployment Guide
+
+## Jubilant Computing Machine - Production Deployment
+
+**Owner:** MORLEY MOSES APOOCH
+**Version:** 1.0.0
+**License:** BSD 3-Clause
+
+---
+
+## Prerequisites
+
+- Node.js 14.0.0 or higher
+- npm or yarn package manager
+- Valid BSD 3-Clause License compliance
+
+## Installation
+
+```bash
+# Clone repository
+git clone https://github.com/morlzappoch/jubilant-computing-machine.git
+cd jubilant-computing-machine
+
+# Install dependencies
+npm install
+CLEANMONEY FAM
+CHCMF
+2026 MORLEY APOOCH

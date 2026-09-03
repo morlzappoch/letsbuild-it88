@@ -1,0 +1,110 @@
+Copyright (c) 2026 Morley Moses Apooch
+SPDX-License-Identifier: MIT
+
+# Ownership Schedule and Declaration of Assets
+
+Effective date: September 2, 2026
+
+Declarant
+- Name: Morley Moses Apooch
+- Date of birth / ID: February 9, 1988
+- Place of birth: Saskatoon, Royal University
+- Saskatchewan ID (masked): ****9843
+- Current address: [Street, City, State/Province, Postal code, Country]
+- Previous address (2005–2007): 429 Avenue C South
+
+Purpose
+- This Schedule records the Declarant’s ownership interests in assets as of the Effective Date, records provenance for AI‑assisted code, and directs ownership and disposition instructions for securities (stocks, bonds, ETFs, mutual funds and proceeds).
+
+Formal Declaration and Attestation
+I, Morley Moses Apooch (born February 9, 1988 in Saskatoon, Royal University), being of sound mind and legal capacity, declare under penalty of perjury under the laws of [Jurisdiction] that the statements contained in this Ownership Schedule and Declaration of Assets are true, correct, and complete to the best of my knowledge and belief as of the Effective Date.
+
+[Sections A–M as previously provided: Real Property; Bank Accounts; Stocks, ETFs; Bonds & Fixed Income; Retirement; Business Interests; Vehicles; Digital Assets; Intellectual Property; Liabilities; Software Provenance; Security & Emergency Custody; Financial Status]
+
+Section N — Directed Ownership & Beneficiary Designation for Securities (Stocks, Bonds, Funds)
+
+1. Definitions
+   - "Securities" means all stocks, bonds, ETFs, mutual funds, and other financial instruments and their cash proceeds, dividends, interest, distributions, and any proceeds or replacements thereof, whether currently held by the Declarant or acquired or generated in the future.
+   - "Brand Entity" means the brand "CLEAN HANDS CLEAN MONEY FAM" and any legal entity (company, trust, or other vehicle) formed to represent or hold that brand.
+
+2. Direction of ownership
+   - I hereby declare and direct that all Securities owned by me now or which I may acquire, receive, or generate in the future (including, without limitation, dividends, interest, and proceeds from sale) shall be held, administered, and/or otherwise directed to:
+     a) Morley Moses Apooch (as individual owner); and
+     b) The Brand Entity "CLEAN HANDS CLEAN MONEY FAM" (as co‑owner, beneficiary, or the intended recipient entity).
+   - My intention is that such Securities and proceeds be owned, controlled, or otherwise directed for the benefit of Morley Moses Apooch and the Brand Entity, as described below, and transferred or re‑registered as necessary to effectuate that intention.
+
+3. Implementation / directive to Executor, Trustee, and Custodians
+   - I empower and direct my Executor, Trustee, and the Designated Emergency Custodians named in Section L to take all reasonable and lawful actions necessary to effectuate this direction, including but not limited to:
+     a) Registering or re‑registering Securities in the name(s) required to reflect the ownership direction (e.g., into the name of Morley Moses Apooch, into a Brand Entity, or into a trust holding for the Brand Entity), subject to account‑provider rules;
+     b) Completing and filing any required transfer‑on‑death (TOD), pay‑on‑death (POD), beneficiary designation, or transfer forms with brokers, custodians, transfer agents, and financial institutions;
+     c) Establishing and funding a legal entity (for example, an LLC, corporate entity, or trust) named CLEAN HANDS CLEAN MONEY FAM if none exists, and transferring Securities into that entity, or creating a trust for the Brand Entity and transferring Securities into the trust, as appropriate;
+     d) Using signed GPG tags, notarized documentation, and other provenance evidence preserved under Section K and L to substantiate ownership claims when presenting evidence to custodians or courts;
+     e) Executing any assignments, transfers, or other documents required by brokers, registrars, or transfer agents to effect the transfers.
+   - This direction is intended to operate as guidance and authority to my Executor/Trustee/Custodians to act immediately upon credible indication of need or upon my death/incapacity. Where required by law or institutional policy, the Executor/Trustee shall obtain the necessary consents and comply with applicable transfer procedures.
+
+4. Priority order of transfer (operational)
+   - Where immediate transfer is required, custodians should follow this priority:
+     1) If the Declarant is alive and authorizes a transfer, instruct the broker/custodian to re‑register or transfer the Security per this Section.
+     2) If the Declarant is incapacitated or deceased, the Executor/Trustee shall, after obtaining any required court or institutional approvals, transfer or cause transfer of Securities into the Brand Entity or trust designated for CLEAN HANDS CLEAN MONEY FAM and/or distribute to Morley Moses Apooch’s estate as directed by the Executor/Trustee per governing estate documents.
+     3) If direct transfer into a brand entity is delayed, custodians shall temporarily hold Securities in a secured, signed, and notarized escrow account or custodial account pending final transfer.
+
+5. Non‑exclusive remedies and financial instructions
+   - The Executor/Trustee/Custodians are authorized to take reasonable financial actions necessary to preserve the value of Securities (including selling a Security and re‑purchasing in the Brand Entity or using proceeds to fund the Brand Entity) provided that all actions are documented and recorded in the chain‑of‑custody log described in Section L.
+
+6. Legal and tax compliance
+   - The Executor/Trustee shall obtain legal and tax advice before effecting transfers that may have tax consequences, reporting obligations, or require formal filings. This Section is a directive of intent and authority, but actual transfers will be subject to applicable law, broker/custodian rules, and any required court orders.
+
+7. Recommendation — enforceability
+   - To make this direction binding and practical, the Declarant and Executor should at minimum:
+     a) Contact each brokerage/custodian to file and confirm beneficiary/TOD/POD or re‑registration forms.
+     b) Create or register the Brand Entity (LLC or trust) named CLEAN HANDS CLEAN MONEY FAM and obtain necessary tax IDs and bank accounts.
+     c) Transfer or assign holdings into the Brand Entity or establish trust accounts with explicit ownership language referencing this Schedule.
+     d) Incorporate this Section N into the Declarant’s will and any trust documents; obtain legal review and notarization.
+
+Section O — Practical Steps to Put Securities Direction on Record (summary)
+- Update account registrations at each broker/custodian; file TOD/POD/beneficiary forms naming CLEAN HANDS CLEAN MONEY FAM and/or Morley Moses Apooch as appropriate.
+- If the Brand is not a legal entity, form a legal entity (LLC/trust) with the Brand name; obtain tax ID; open brokerage accounts in entity name; transfer assets.
+- Provide custodians with notarized copy of this Ownership Schedule and supporting evidence (signed GPG tag, commit SHA, AI transcript).
+- Trustee/Executor to execute required transfer forms and maintain complete chain-of-custody logs.
+- Consult a securities attorney and tax advisor to address transfer mechanics, regulatory compliance, and tax reporting.
+
+Schedule of Supporting Documents
+- Proof of securities holdings: broker statements, transfer agent records, CUSIPs, account numbers (store full identifiers only in encrypted escrow).
+- Creation documents for the Brand Entity (if formed): Articles of Organization, EIN, bank account details.
+- Ownership evidence: signed tag, commit SHA, AI transcript: docs/claude_transcript_2026-04-07.txt.
+- Notarized copies of this Schedule.
+
+Attestation and Signature (Ownership & Securities Direction)
+I certify under penalty of perjury under the laws of [Jurisdiction] that the information above is accurate and that I direct the ownership/disposition of Securities as written in Sections N and O.
+
+Declarant signature: _______________________________  
+Printed name: Morley Moses Apooch  
+Date: September 2, 2026
+
+Witness signature: _______________________________  
+Printed name: _______________________________  
+Date: ________________________
+
+Notarial Acknowledgement (sample)
+State/Province of: ____________________  
+County of: ___________________________
+
+On this ____ day of ______________, 20__, before me, the undersigned Notary Public, personally appeared Morley Moses Apooch, proved to me through satisfactory evidence of identity to be the person whose name is signed to the foregoing instrument and acknowledged that he executed the same for the purposes contained therein.
+
+Signature of Notary Public: ________________________  
+Printed name: ________________________  
+My commission expires: ___________________________  
+(Seal)
+
+License (MIT)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this Ownership Schedule and Declaration of Assets (the “Document”) and associated materials (the “Work”), to deal in the Work without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Work, and to permit persons to whom the Work is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Work.
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDER (MORLEY MOSES APOOCH) BE LIABLE FOR ANY CLAIMS OR DAMAGES ARISING FROM USE OF THE WORK.
+
+Legal disclaimer
+- This document is intended as a template and declaration of intent. For legally binding transfers of securities, consult a licensed attorney and your brokers/custodians.
+- Do NOT publish full account numbers or personal identifiers in public repositories or unsecured documents. Store full sensitive data only within encrypted escrow per Section L.
+
+Provenance / Master‑Lock / Emergency steps
+- Follow the scripts and instructions in docs/ and scripts/ to create signed snapshots, encrypted archives, Shamir shares, and to enforce all-systems lockdown in case of compromise.

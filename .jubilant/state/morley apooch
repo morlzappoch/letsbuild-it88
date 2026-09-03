@@ -1,0 +1,22 @@
+{
+  "name": "jubilant-computing-machine",
+  "version": "1.0.0",
+  "description": "High-value protected source code repository with BSD 3-Clause License",
+  "main": "src/core-system.js",
+  "scripts": {
+    "start": "node src/core-system.js",
+    "test": "node test/run-tests.js"
+  },
+  "keywords": [
+    "protection",
+    "security",
+    "encryption",
+    "authentication"
+  ],
+  "author": "MORLEY MOSES APOOCH",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+
