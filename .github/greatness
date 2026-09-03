@@ -1,0 +1,58 @@
+import time
+import random
+import hmac
+import hashlib
+
+# Secure Configuration
+SECRET_KEY = b"production_secure_signing_key_99x!"
+MAX_ALLOWED_DURATION_MS = 2.0  # Fraud threshold for unusual speed/latency anomalies
+
+results = []
+start_time = time.time()
+
+for i in range(1, 1001):
+    # 1. Simulate receiving a payload with a cryptographic signature from a client
+    mock_payload = f"transaction_data_packet_{i}".encode()
+    
+    # Generate valid signature
+    valid_signature = hmac.new(SECRET_KEY, mock_payload, hashlib.sha256).hexdigest()
+    
+    # Simulate a hostile actor tampering with 0.5% of requests
+    is_hostile_attack = random.random() < 0.005
+    presented_signature = "TAMPERED_OR_FORGED_SIGNATURE" if is_hostile_attack else valid_signature
+    
+    # 2. Security Check: Verify Data Integrity
+    is_authentic = hmac.compare_digest(
+        hmac.new(SECRET_KEY, mock_payload, hashlib.sha256).hexdigest(), 
+        presented_signature
+    )
+    
+    # 3. Simulate processing metrics
+    execution_time_ms = round(random.uniform(0.1, 2.5), 2)
+    
+    # 4. Determine status based on security and operational safety
+    if not is_authentic:
+        status = "REJECTED_FRAUD_DETECTED"
+    elif execution_time_ms > MAX_ALLOWED_DURATION_MS:
+        status = "FLAGGED_LATENCY_ANOMALY"
+    else:
+        status = "SUCCESS"
+        
+    results.append({
+        "run": i,
+        "status": status,
+        "duration_ms": execution_time_ms
+    })
+
+end_time = time.time()
+
+# Security Metrics Summary
+total_runs = len(results)
+success_count = sum(1 for r in results if r["status"] == "SUCCESS")
+fraud_blocked = sum(1 for r in results if r["status"] == "REJECTED_FRAUD_DETECTED")
+anomaly_flagged = sum(1 for r in results if r["status"] == "FLAGGED_LATENCY_ANOMALY")
+
+print(f"Total Requests Evaluated: {total_runs}")
+print(f"🔒 Authenticated & Processed: {success_count}")
+print(f"🛡️ Fraud Attacks Deflected: {fraud_blocked}")
+print(f"⚠️ Latency Anomalies Investigated: {anomaly_flagged}")
