@@ -1,0 +1,37 @@
+MOPROTEC / Cybersecurity Platform
+│
+├── Core Proprietary Code
+│   ├── Network Anomaly Detection
+│   ├── DDoS Protection
+│   └── Security Controls
+│
+├── Software Supply-Chain Record
+│   ├── Dependency Inventory
+│   ├── SBOM
+│   ├── License Records
+│   └── Component Provenance
+│
+├── Vulnerability Management
+│   ├── Vulnerability Intake
+│   ├── Severity Classification
+│   ├── Remediation Tracking
+│   └── Incident Record
+│
+├── Secure-by-Design Controls
+│   ├── Threat Modeling
+│   ├── Secure Development
+│   ├── Security Testing
+│   └── Release Verification
+│
+├── CRA Evidence Package
+│   ├── Technical Documentation
+│   ├── Risk Assessment
+│   ├── SBOM
+│   ├── Vulnerability Process
+│   └── Compliance Evidence
+│
+└── IP / Ownership Layer
+    ├── Copyright Records
+    ├── License Notices
+    ├── Contributor Records
+    └── Proprietary-Code Boundaries

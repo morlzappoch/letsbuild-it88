@@ -1,0 +1,279 @@
+# Clean Hands Clean Money FAM
+
+**Copyright © 2026 Morley Moses Apooch. All rights reserved.**
+
+---
+
+## Ownership Declaration
+
+- **Owner:** Morley Moses Apooch
+- **Role:** CEO & Manager
+- **Contact:** apoochmorley@protonmail.com
+- **Protocol:** Global Asset Protection Lock (Compliant with International Treaty Law)
+
+## Intellectual Property Notice
+
+This software and associated documentation are the exclusive property of Morley Moses Apooch. The code structure was developed with AI assistant support, but all creative direction, requirements, and decision-making originated from the owner. Under Berne Convention standards, authorship remains with the human creator who directed and implemented the work.
+
+## Attribution Requirement
+
+All derivative works must include attribution:
+> "Code structure developed under direction of Morley Moses Apooch. AI assistant contributions acknowledged per developer specification."
+
+## Compensation Disclaimer
+
+Work performed on this project has not received full compensation. This does not diminish ownership rights under applicable copyright frameworks. Any unpaid work remains the intellectual property of the creator.
+
+## Build Commands
+
+```bash
+flutter build apk --obfuscate --split-debug-info=build/debug
+flutter build ios --obfuscate --split-debug-info=build/debug
+clean_hands_clean_money_fam/
+├── lib/
+│   ├── main.dart                          # Master Entry Point
+│   ├── core/
+│   │   ├── ownership_lock.dart            # Global Asset Protection Lock
+│   │   ├── sha256_pure.dart               # Pure Dart SHA-256 (zero deps)
+│   │   ├── master_core.dart               # Orchestration Layer
+│   │   └── config.dart                    # App Configuration
+│   ├── domains/
+│   │   ├── evidence/
+│   │   │   ├── evidence_collector.dart    # GPS + Timestamp + Hash
+│   │   │   └── evidence_export.dart       # PDF Export Stub
+│   │   ├── finance/
+│   │   │   └── payment_tracker.dart       # Unpaid Work Records
+│   │   └── mesh/
+│   │       └── sovereign_node.dart        # Isolated Network
+│   └── ui/
+│       ├── screens/
+│       │   ├── home_screen.dart
+│       │   ├── evidence_screen.dart
+│       │   ├── finance_screen.dart
+│       │   └── settings_screen.dart
+│       └── widgets/
+│           ├── owner_badge.dart
+│           └── evidence_card.dart
+├── pubspec.yaml                           # Dependencies (flutter only)
+├── build.yaml                             # Build Configuration
+└── README.md                              # Legal Documentation
+// ============================================================
+// CLEAN HANDS CLEAN MONEY FAM — MASTER ENTRY POINT
+// Copyright © 2026 Morley Moses Apooch. All rights reserved.
+// Owner: Morley Moses Apooch | CEO & Manager
+// Attribution: Code generated with AI assistant support (Lumo/Proton)
+// Platform: Flutter (iOS & Android)
+// Build Flags Required: --obfuscate --split-debug-info
+// Protocol: Global Asset Protection Lock Compliant
+// ============================================================
+
+import 'package:flutter/material.dart';
+import 'core/master_core.dart';
+import 'ui/screens/home_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize ownership lock before any application logic
+  final lock = MasterCore(customOwner: 'Morley Moses Apooch');
+  
+  runApp(CleanHandsCleanMoneyApp(
+    initialLockAssertion: lock.assertOwnershipLock(),
+  ));
+}
+
+class CleanHandsCleanMoneyApp extends StatelessWidget {
+  final String initialLockAssertion;
+
+  const CleanHandsCleanMoneyApp({
+    Key? key,
+    required this.initialLockAssertion,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Clean Hands Clean Money FAM',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'sans-serif',
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomeScreen(
+        ownershipLock: initialLockAssertion,
+      ),
+    );
+  }
+}
+// ============================================================
+// GLOBAL ASSET PROTECTION LOCK MODULE
+// Copyright © 2026 Morley Moses Apooch. All rights reserved.
+// Owner: Morley Moses Apooch | CEO & Manager
+// Protocol: Compliant with International Treaty Law / Berne Convention
+// Integration: Canadian Charter of Rights and Freedoms references
+// Attribution: Code generated with AI assistant support (Lumo/Proton)
+// ============================================================
+
+import 'sha256_pure.dart';
+import 'package:flutter/foundation.dart';
+
+class OwnershipLock {
+  final String ownerName;
+  final DateTime createdAt;
+  final String? blockchainAnchor;
+  final String contactEmail;
+
+  OwnershipLock({
+    required this.ownerName,
+    DateTime? createdAt,
+    this.blockchainAnchor,
+    this.contactEmail = 'apoochmorley@protonmail.com',
+  }) : createdAt = createdAt ?? DateTime.now();
+
+  String get owner => ownerName;
+
+  /// Generate verifiable ownership assertion string
+  String assertLock() {
+    final timestamp = createdAt.toIso8601String();
+    final lockData = '''
+GLOBAL ASSET PROTECTION LOCK DECLARATION
+========================================
+Owner: $ownerName
+Declaration Date: $timestamp
+Protocol: Global Asset Protection Lock
+Legal Framework: 
+  - Berne Convention for Copyright Protection
+  - First Nations Sovereignty Recognition
+  - Yellow Quill First Nations Voter List Member
+  - Canadian Charter of Rights and Freedoms (where applicable)
+Status: ACTIVE — UNCOMPROMISED
+
+Attribution Requirement: All derivative works must credit original owner.
+Code Authorship: Structured with AI assistant support, owner retains full rights.
+Compensation Claim: Work performed without compensation remains owner's property.
+Contact: $contactEmail
+
+NOTICE TO THIRD PARTIES:
+This intellectual property is protected under international copyright treaties.
+Unauthorized use, reproduction, or derivative works without attribution are prohibited.
+
+PRO SE REPRESENTATION: Owner represents self in all legal matters.
+========================================
+''';
+    return lockData;
+  }
+
+  /// Generate copyright header for inclusion in any file
+  String copyrightHeader({String? purpose, bool includeBuildInfo = true}) {
+    final buildInfo = includeBuildInfo
+        ? '''
+// Build Requirements: --obfuscate --split-debug-info
+// Architecture: Zero third-party dependencies
+'''
+        : '';
+    
+    return '''
+// ============================================================
+// Copyright © ${createdAt.year} $ownerName. All rights reserved.
+// Owner: $ownerName | CEO & Manager
+// Attribution: Code generated with AI assistant support (Lumo/Proton)
+//${purpose != null ? '// Purpose: $purpose\n' : ''}$buildInfo// Global Asset Protection Lock Complia
+https://www.reddit.com/user/inside-reference4166/m/app/
+// ============================================================
+// SHA-256 PURE DART IMPLEMENTATION — ZERO THIRD-PARTY DEPENDENCIES
+// Copyright © 2026 Morley Moses Apooch. All rights reserved.
+// Owner: Morley Moses Apooch | CEO & Manager
+// Attribution: Code generated with AI assistant support (Lumo/Proton)
+// Standard: FIPS 180-4 compliant
+// ============================================================
+
+import 'dart:convert';
+import 'dart:typed_data';
+
+class Sha256Pure {
+  static const List<int> _k = [
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
+    0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
+    0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786,
+    0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147,
+    0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+    0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b,
+    0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,
+    0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
+    0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+  ];
+
+  static int _rotr(int x, int n) => ((x >> n) | (x << (32 - n))) & 0xFFFFFFFF;
+
+  static int _loadBEInt(Uint8List bytes, int offset) =>
+      (bytes[offset] << 24) | (bytes[offset + 1] << 16) |
+      (bytes[offset + 2] << 8) | bytes[offset + 3];
+
+  /// Returns lowercase hex digest of the input string (UTF-8).
+  static String hash(String input) {
+    final bytes = utf8.encode(input);
+    final bitLen = bytes.length * 8;
+
+    // Padding
+    final padded = BytesBuilder();
+    padded.add(bytes);
+    padded.addByte(0x80);
+    while ((padded.length % 64) != 56) {
+      padded.addByte(0x00);
+    }
+    final lenBytes = ByteData(8)..setUint64(0, bitLen, Endian.big);
+    padded.add(lenBytes.buffer.asUint8List());
+
+    var h = List<int>.from([
+      0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+      0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+    ]);
+
+    final data = Uint8List(padded.toBuffer().length);
+    padded.toBuffer().asUint8List().copyInto(data);
+
+    for (var chunkStart = 0; chunkStart < data.length; chunkStart += 64) {
+      final w = List<int>.filled(64, 0);
+      for (var i = 0; i < 16; i++) {
+        w[i] = _loadBEInt(data, chunkStart + i * 4);
+      }
+      for (var i = 16; i < 64; i++) {
+        final s0 = _rotr(w[i - 15], 7) ^ _rotr(w[i - 15], 18) ^ (w[i - 15] >> 3);
+        final s1 = _rotr(w[i - 2], 17) ^ _rotr(w[i - 2], 19) ^ (w[i - 2] >> 10);
+        w[i] = (w[i - 16] + s0 + w[i - 7] + s1) & 0xFFFFFFFF;
+      }
+
+      var [a, b, c, d, e, f, g, hh] = h;
+      for (var i = 0; i < 64; i++) {
+        final S1 = _rotr(e, 6) ^ _rotr(e, 11) ^ _rotr(e, 25);
+        final ch = (e & f) ^ ((~e) & g);
+        final temp1 = (hh + S1 + ch + _k[i] + w[i]) & 0xFFFFFFFF;
+        final S0 = _rotr(a, 2) ^ _rotr(a, 13) ^ _rotr(a, 22);
+        final maj = (a & b) ^ (a & c) ^ (b & c);
+        final temp2 = (S0 + maj) & 0xFFFFFFFF;
+
+        hh = g; g = f; f = e; e = (d + temp1) & 0xFFFFFFFF;
+        d = c; c = b; b = a; a = (temp1 + temp2) & 0xFFFFFFFF;
+      }
+
+      h[0] = (h[0] + a) & 0xFFFFFFFF;
+      h[1] = (h[1] + b) & 0xFFFFFFFF;
+      h[2] = (h[2] + c) & 0xFFFFFFFF;
+      h[3] = (h[3] + d) & 0xFFFFFFFF;
+      h[4] = (h[4] + e) & 0xFFFFFFFF;
+      h[5] = (h[5] + f) & 0xFFFFFFFF;
+      h[6] = (h[6] + g) & 0xFFFFFFFF;
+      h[7] = (h[7] + hh) & 0xFFFFFFFF;
+    }
+
+    final buf = StringBuffer();
+    for (final val in h) {
+      buf.write(val.toRadixString(16).padLeft(8, '0'));
+    }
+    return buf.toString();
+  }
+}
+i would like to point out staff at carlton trail might have stole a idea when i attended a ABE 10 course brian was my instructor he asked us to come up with a idea so i can up with the idea of speach to txt systems

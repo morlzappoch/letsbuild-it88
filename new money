@@ -1,0 +1,210 @@
+// ============================================================
+// CLEAN HANDS CLEAN MONEY FAM — MASTER ENTRY POINT
+// Copyright © 2026 Morley Moses Apooch. All rights reserved.
+// Owner: Morley Moses Apooch | CEO & Manager
+// Attribution: Code generated with AI assistant support (Lumo/Proton)
+// Platform: Flutter (iOS & Android)
+// Build Flags Required: --obfuscate --split-debug-info
+// ============================================================
+
+import 'package:flutter/material.dart';
+import 'core/master_core.dart';
+import 'core/ownership_lock.dart';
+
+void main() {
+  // Initialize ownership lock before any application logic
+  final lock = OwnershipLock(ownerName: 'Morley Moses Apooch');
+  
+  runApp(CleanHandsCleanMoneyApp(
+    initialLockAssertion: lock.assertLock(),
+  ));
+}
+
+class CleanHandsCleanMoneyApp extends StatelessWidget {
+  final String initialLockAssertion;
+
+  const CleanHandsCleanMoneyApp({
+    Key? key,
+    required this.initialLockAssertion,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Clean Hands Clean Money FAM',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'sans-serif',
+      ),
+      home: MasterDashboard(
+        ownershipLock: initialLockAssertion,
+      ),
+    );
+  }
+}
+
+class MasterDashboard extends StatefulWidget {
+  final String ownershipLock;
+
+  const MasterDashboard({Key? key, required this.ownershipLock})
+      : super(key: key);
+
+  @override
+  State<MasterDashboard> createState() => _MasterDashboardState();
+}
+
+class _MasterDashboardState extends State<MasterDashboard> {
+  late MasterCore _core;
+
+  @override
+  void initState() {
+    super.initState();
+    _core = MasterCore(customOwner: 'Morley Moses Apooch');
+    _registerDomains();
+  }
+
+  void _registerDomains() {
+    // Functional domains — isolated, independent, zero third-party deps
+    _core.registerDomain('finance', {'default_meal': 'Breakfast'});
+    _core.registerDomain('evidence', {'collection_method': 'GPS_timestamp_sha256'});
+    _core.registerDomain('mesh', {'node_architecture': 'sovereign_isolated'});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Clean Hands Clean Money FAM'),
+        backgroundColor: Colors.purple[700],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildOwnerBadge(),
+            SizedBox(height: 24),
+            _buildEvidenceSection(),
+            SizedBox(height: 24),
+            _buildMenuGrid(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOwnerBadge() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.purple[50],
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.purple[200]!),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('👤 Owner: Morley Moses Apooch',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text('CEO & Manager', style: TextStyle(color: Colors.grey[600])),
+          SizedBox(height: 8),
+          Text('⚖️ Global Asset Protection Lock: ACTIVE',
+              style: TextStyle(fontWeight: FontWeight.w500, color: Colors.green[700])),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEvidenceSection() {
+    final evidencePackage = _core.generateEvidencePackage();
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.grey[300]!),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('📋 Evidence Package Generated',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          SizedBox(height: 8),
+          Text('Domains Registered: ${evidencePackage['domains'].length}'),
+          Text('Manifest Hash: ${evidencePackage['manifest_hash'].substring(0, 16)}...'),
+          Text('Timestamp: ${evidencePackage['generated_at']}'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMenuGrid() {
+    return GridView.count(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      childAspectRatio: 1.5,
+      children: [
+        _menuCard('Finance', Icons.account_balance, Colors.blue),
+        _menuCard('Evidence', Icons.verified_user, Colors.green),
+        _menuCard('Mesh Node', Icons.cloud, Colors.orange),
+        _menuCard('Settings', Icons.settings, Colors.grey),
+      ],
+    );
+  }
+
+  Widget _menuCard(String label, IconData icon, Color color) {
+    return Card(
+      elevation: 2,
+      child: InkWell(
+        onTap: () {
+          // Domain navigation logic
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 48, color: color),
+              SizedBox(height: 8),
+              Text(label, style: TextStyle(fontWeight: FontWeight.w500)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+# Clean Hands Clean Money FAM
+
+**Copyright © 2026 Morley Moses Apooch. All rights reserved.**
+
+---
+
+## Ownership Declaration
+
+- **Owner:** Morley Moses Apooch
+- **Role:** CEO & Manager
+- **Contact:** apoochmorley@protonmail.com
+- **Protocol:** Global Asset Protection Lock (Compliant with International Treaty Law)
+
+## Intellectual Property Notice
+
+This software and associated documentation are the exclusive property of Morley Moses Apooch. The code structure was developed with AI assistant support, but all creative direction, requirements, and decision-making originated from the owner. Under Berne Convention standards, authorship remains with the human creator who directed and implemented the work.
+
+## Attribution Requirement
+
+All derivative works must include attribution:
+> "Code structure developed under direction of Morley Moses Apooch. AI assistant contributions acknowledged per developer specification."
+
+## Compensation Disclaimer
+
+Work performed on this project has not received full compensation. This does not diminish ownership rights under applicable copyright frameworks. Any unpaid work remains the intellectual property of the creator.
+
+## Build Commands
+
+```bash
+flutter build apk --obfuscate --split-debug-info=build/debug
+flutter build ios --obfuscate --split-debug-info=build/debug

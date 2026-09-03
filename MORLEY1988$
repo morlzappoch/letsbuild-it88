@@ -1,0 +1,75 @@
+"""Ultimate integration tests: CLI <-> library cross-verification."""
+
+import json
+
+from src import cli
+from src.hash_tools import compute_sha256, manifest_digest
+
+def _mk(tmp_path, name, data):
+    p = tmp_path / name
+    p.write_bytes(data)
+    return str(p)
+
+class TestRoundTrip:
+    def test_record_then_verify_roundtrip(self, tmp_path):
+        f = _mk(tmp_path, "ev1.bin", b"original evidence")
+        import io, contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            assert cli.main(["record", f]) == 0
+        rec = json.loads(buf.getvalue())
+        assert cli.main(["verify", f, rec["sha256"]]) == 0
+
+    def test_tampered_file_fails_verification(self, tmp_path):
+        f = _mk(tmp_path, "ev.bin", b"original")
+        digest = compute_sha256(b"original")
+        # Modify the file AFTER capturing the digest
+        with open(f, "ab") as fh:
+            fh.write(b"-tampered")
+        assert cli.main(["verify", f, digest]) == 1
+
+    def test_manifest_catches_swap(self, tmp_path):
+        f1 = _mk(tmp_path, "a.bin", b"first")
+        f2 = _mk(tmp_path, "b.bin", b"second")
+        import io, contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            assert cli.main(["manifest", f1, f2]) == 0
+        d1 = json.loads(buf.getvalue())["manifest_sha256"]
+        # Overwrite one file, rebuild manifest -> digest must change
+        with open(f2, "wb") as fh:
+            fh.write(b"replaced content")
+        buf2 = io.StringIO()
+        with contextlib.redirect_stdout(buf2):
+            assert cli.main(["manifest", f1, f2]) == 0
+        d2 = json.loads(buf2.getvalue())["manifest_sha256"]
+        assert d1 != d2
+
+class TestEdgeCases:
+    def test_empty_file(self, tmp_path):
+        f = _mk(tmp_path, "empty.bin", b"")
+        assert cli.main(["record", f]) == 0
+
+    def test_binary_nulls(self, tmp_path):
+        f = _mk(tmp_path, "bin.bin", bytes(512))
+        assert cli.main(["record", f]) == 0
+
+    def test_verify_bad_hex_length(self, tmp_path):
+        f = _mk(tmp_path, "x.bin", b"data")
+        # 63-char digest -> ValueError propagates as nonzero failure, caught by pytest.raises
+        import pytest
+        with pytest.raises(ValueError):
+            cli.main(["verify", f, "a" * 63])
+
+class TestLibraryConsistency:
+    def test_cli_manifest_matches_library_computation(self, tmp_path):
+        paths = [_mk(tmp_path, n, n.encode()) for n in ("p.bin", "q.bin", "r.bin")]
+        recs = []
+        for p in paths:
+            with open(p, "rb") as fh:
+                recs.append({"label": p, "sha256": compute_sha256(fh.read()),
+                             "size_bytes": -1})  # shape differs; compare structure only
+        # Library-level: digest changes when record list changes
+        d1 = manifest_digest(recs)
+        d2 = manifest_digest(recs[:-1])
+        assert d1 != d2

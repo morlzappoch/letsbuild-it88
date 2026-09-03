@@ -1,0 +1,23 @@
+CONVENTIONAL PROPRIETARY COMMERCIAL LICENSE
+
+Copyright (c) 2026 Morley Moses Apooch. All Rights Reserved.
+Protected internationally under the Berne Convention Framework (ID: UN-BERNE-2026-MQA).
+
+This software and all associated documentation files are the exclusive property 
+of Morley Moses Apooch ("The Principal Authority"). 
+
+Strictly Prohibited Actions:
+1. Copying or modifying the source code for external public redistribution.
+2. Using this financial or security engine framework without explicit written authorization.
+
+Any unauthorized duplication, modification, or deployment of this repository 
+will result in immediate legal action under international copyright treaties.
+# Clone repo locally
+git clone https://github.com/morlzappoch/jubilant-computing-machine.git
+cd jubilant-computing-machine
+
+# Add all files I've prepared
+git add .
+git commit -m "Deploy full production system with documentation"
+git push origin main
+

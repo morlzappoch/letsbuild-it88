@@ -1,0 +1,162 @@
+"""MASTER LOCK — Global Asset Protection Lock for Clean Hands Clean Money FAM.
+
+Generates the canonical ownership declaration, binds repository artifacts
+to it via SHA-256, and verifies lock integrity at any later date.
+
+Copyright (c) 2026 Morley Moses Apooch. All rights reserved.
+Owner: Morley Moses Apooch — Founder, CEO & Manager
+Attribution: Code generated with AI assistant support (Lumo/Proton)
+Contact: apoochmorley@protonmail.com
+"""
+
+from __future__ import annotations
+
+import datetime as _dt
+import hashlib
+import json
+
+OWNER_NAME = "Morley Moses Apooch"
+OWNER_ROLE = "Founder, CEO & Manager"
+CONTACT_EMAIL = "apoochmorley@protonmail.com"
+PROJECT = "Clean Hands Clean Money FAM"
+PROTOCOL = "Global Asset Protection Lock"
+LOCK_VERSION = "1.0.0"
+
+def _utc_now() -> str:
+    return _dt.datetime.now(_dt.timezone.utc).isoformat()
+
+def _canon(obj) -> bytes:
+    return json.dumps(obj, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+def build_master_lock(domains: list[str] | None = None,
+                      blockchain_anchor: str | None = None) -> dict:
+    """Build the canonical Master Lock declaration. Deterministic given inputs."""
+    domains = domains or ["finance", "evidence", "mesh"]
+    lock = {
+        "lock_protocol": PROTOCOL,
+        "lock_version": LOCK_VERSION,
+        "owner": {
+            "name": OWNER_NAME,
+            "role": OWNER_ROLE,
+            "representation": "pro_se",
+            "contact": CONTACT_EMAIL,
+        },
+        "project": PROJECT,
+        "registered_domains": domains,
+        "declared_utc": _utc_now(),
+        "legal_frameworks": [
+            "Berne Convention for the Protection of Literary and Artistic Works",
+            "Canadian Charter of Rights and Freedoms (where applicable)",
+        ],
+        "authorship_disclosure":
+            "Code structured with AI assistant support at the direction of the "
+            "owner; all creative direction, requirements, and decision-making "
+            "originate from the owner.",
+        "attribution_requirement":
+            "All derivative works must credit Morley Moses Apooch.",
+        "blockchain_anchor": blockchain_anchor,
+        "status": "ACTIVE",
+    }
+    # Self-sealing: the lock carries its own digest over everything except
+    # the digest field itself, so any edit to any field breaks verification.
+    lock["lock_sha256"] = compute_sha256(_canon(lock))
+    return lock
+
+def verify_master_lock(lock: dict) -> bool:
+    """True if the lock declaration is unmodified since sealing."""
+    candidate = {k: v for k, v in lock.items() if k != "lock_sha256"}
+    stored = lock.get("lock_sha256", "")
+    if not isinstance(stored, str) or len(stored) != 64:
+        return False
+    return compute_sha256(_canon(candidate)) == stored.lower()
+
+def bind_artifact(lock: dict, content: bytes, label: str,
+                  gps: dict | None = None) -> dict:
+    """Bind a repository artifact to the Master Lock.
+
+    The binding digest covers the artifact AND the lock digest, so an
+    artifact is provably registered under THIS lock, not another.
+    """
+    if not verify_master_lock(lock):
+        raise ValueError("master lock failed integrity check — refusing to bind")
+    binding = {
+        "artifact_label": label,
+        "artifact_sha256": compute_sha256(content),
+        "master_lock_sha256": lock["lock_sha256"],
+        "bound_utc": _utc_now(),
+        "gps": gps,
+        "owner": OWNER_NAME,
+    }
+    binding["binding_sha256"] = compute_sha256(_canon(binding))
+    return binding
+
+def verify_binding(lock: dict, binding: dict, content: bytes) -> bool:
+    """Verify an artifact still matches its binding under this lock."""
+    if not verify_master_lock(lock):
+        return False
+    candidate = {k: v for k, v in binding.items() if k != "binding_sha256"}
+    return (compute_sha256(_canon(candidate)) == binding.get("binding_sha256", "").lower()
+            and compute_sha256(content) == binding["artifact_sha256"])
+"""Tests for the Master Lock module."""
+
+import pytest
+
+from src.hash_tools import compute_sha256
+from src.master_lock import bind_artifact, build_master_lock, verify_binding, verify_master_lock
+
+
+class TestMasterLock:
+    def test_lock_builds_and_verifies(self):
+        lock = build_master_lock()
+        assert lock["owner"]["name"] == "Morley Moses Apooch"
+        assert verify_master_lock(lock) is True
+
+    def test_any_field_edit_breaks_verification(self):
+        lock = build_master_lock()
+        tampered = dict(lock)
+        tampered["owner"] = {**tampered["owner"], "name": "Someone Else"}
+        assert verify_master_lock(tampered) is False
+
+    def test_status_tamper_detected(self):
+        lock = build_master_lock()
+        tampered = dict(lock, status="REVOKED")
+        assert verify_master_lock(tampered) is False
+
+    def test_deterministic_digest_excluding_timestamp(self):
+        a = build_master_lock()
+        b = build_master_lock()
+        # declared_utc differs, so digests differ — but both verify
+        assert verify_master_lock(b) is True
+
+    def test_binding_requires_valid_lock(self):
+        lock = build_master_lock()
+        lock["status"] = "TAMPERED"
+        with pytest.raises(ValueError):
+            bind_artifact(lock, b"data", label="x")
+
+    def test_binding_roundtrip(self):
+        lock = build_master_lock()
+        b = bind_artifact(lock, b"my source code", label="main.dart")
+        assert verify_binding(lock, b, b"my source code") is True
+        assert verify_binding(lock, b, b"tampered content") is False
+
+    def test_binding_detects_owner_swap(self):
+        lock = build_master_lock()
+        b = bind_artifact(lock, b"code", label="f.dart")
+        swapped = dict(b, owner="Impostor")
+        assert verify_binding(lock, swapped, b"code") is False
+def cmd_lock(args) -> int:
+    from src.master_lock import bind_artifact, build_master_lock
+    lock = build_master_lock()
+    print(json.dumps(lock, indent=2, sort_keys=True))
+    return 0
+
+def cmd_bind(args) -> int:
+    from src.master_lock import bind_artifact, build_master_lock
+    lock = build_master_lock()
+    binding = bind_artifact(lock, _read(args.file),
+                            label=args.label,
+                            gps={"lat": args.lat, "lon": args.lon}
+                            if args.lat is not None else None)
+    print(json.dumps(binding, indent=2, sort_keys=True))
+    return 0

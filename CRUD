@@ -1,0 +1,11 @@
+📦 Clean_Hands_Clean_Money_Root/
+├── 📄 config.json                       # [U] Core configuration states & metadata
+├── 📄 setup_vault.sh                    # [C] Auto-generates the directory architecture
+├── 📄 push_to_github.sh                 # [U/D] Git repository maintenance automation
+├── 📂 .github/workflows/
+│   └── 📄 deploy.yml                    # [R] Automated cloud compliance validation
+├── 📂 01_Core_Source/
+│   ├── 📄 nexus_daemon.py               # [C/R/U/D] Continuous monitoring & self-healing loop
+│   └── 📄 database_crud_engine.py       # [C/R/U/D] Master record processor database module
+└── 📂 04_Legal_Evidence_Vault/
+    └── 📂 Raw_Backups/                  # [R/D] Document archival sandbox partition

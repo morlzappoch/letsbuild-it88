@@ -1,0 +1,198 @@
+"""
+Debugger - System Security Analyzer v2.0.0
+Copyright (c) 2026 Morley Moses Apooch
+All rights reserved. Protected under Berne Convention.
+Contact: apoochmorley@protonmail.com
+Yorkton, Saskatchewan, Canada
+"""import os, sys, json, csv, time, hashlib, logging, argparse, subprocess, statistics, smtplib
+from datetime import datetime
+from email.mime.text import MIMEText
+from pathlib import Path# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('Debugger')# Default configuration
+CONFIG = {
+    "suspicious_process_names": ["nc", "ncat", "mimikatz", "psexec", "meterpreter", "cryptominer", "xmrig", "keylogger", "rootkit"],
+    "cpu_threshold": 80.0, "mem_threshold": 50.0, "std_dev_multiplier": 3,
+    "exclude_patterns": [".git", "__pycache__", "node_modules", "baseline.json", "report."],
+    "expected_ports": [22, 80, 443], "watch_interval": 300,
+    "email_alerts": {"enabled": False, "smtp_host": "", "smtp_port": 587, "min_threat_level": "HIGH"}
+}class SecurityAnalyzer:
+    """System Security Analyzer for anomaly detection"""
+    def __init__(self, baseline='baseline.json', config='config.json'):
+        self.name = 'Debugger-'
+        self.version = '2.0.0'
+        self.author = 'Morley Moses Apooch'
+        self.email = 'apoochmorley@protonmail.com'
+        self.baseline_path = Path(baseline)
+        self.config_path = Path(config)
+        self.config = self._load_config()
+        self.baseline = self._load_baseline()
+        self.is_linux = sys.platform.startswith('linux')
+        logger.info(f"{self.name}{self.version} | Copyright (c) 2026 {self.author}")def _load_config(self):
+    cfg = dict(CONFIG)
+    if self.config_path.exists():
+        try:
+            with open(self.config_path, 'r') as f: cfg.update(json.load(f))
+        except Exception as e: logger.warning(f"Config load failed: {e}")
+    else:
+        with open(self.config_path, 'w') as f: json.dump(cfg, f, indent=2)
+    return cfg
+
+def _load_baseline(self):
+    return json.load(open(self.baseline_path)) if self.baseline_path.exists() else {}
+
+def _save_baseline(self, data):
+    with open(self.baseline_path, 'w') as f: json.dump(data, f, indent=2)
+
+def scan_system(self, path='.', update=True):
+    results = {
+        'timestamp': datetime.now().isoformat(), 'app': self.name, 'version': self.version,
+        'author': self.author, 'email': self.email, 'path': path, 'anomalies': [], 'threat': 'LOW'
+    }
+    results['anomalies'].extend(self._check_procs())
+    results['anomalies'].extend(self._check_files(path, update))
+    results['anomalies'].extend(self._check_network())
+    results['threat'] = self._assess_threat(results['anomalies'])
+    return results
+
+def _check_procs(self):
+    anomalies = []
+    suspicious = set(n.lower() for n in self.config['suspicious_process_names'])
+    for p in self._get_procs():
+        name = str(p.get('name', '')).lower()
+        tokens = set(name.replace('-', '_').split('_')) | {name}
+        if tokens & suspicious: anomalies.append({'type': 'suspicious_proc', 'severity': 'HIGH', 'detail': f"Process '{name}' (PID {p.get('pid')})"})
+        if p.get('cpu', 0) >= self.config['cpu_threshold']: anomalies.append({'type': 'high_cpu', 'severity': 'MEDIUM', 'detail': f"'{name}' CPU: {p.get('cpu'):.1f}%"})
+        if p.get('mem', 0) >= self.config['mem_threshold']: anomalies.append({'type': 'high_mem', 'severity': 'MEDIUM', 'detail': f"'{name}' Mem: {p.get('mem'):.1f}%"})
+    return anomalies
+
+def _get_procs(self):
+    records = []
+    if self.is_linux:
+        try:
+            total_mem = int(open('/proc/meminfo').read().split('MemTotal:')[1].split()[0])
+            pids = [int(e) for e in os.listdir('/proc') if e.isdigit()]
+            ticks1 = {pid: self._read_ticks(pid) for pid in pids if self._read_ticks(pid)}
+            time.sleep(0.1)
+            for pid in pids:
+                try:
+                    name = open(f'/proc/{pid}/comm').read().strip()
+                    mem_pct = round(int(open(f'/proc/{pid}/status').read().split('VmRSS:')[1].split()[0]) / total_mem * 100, 2)
+                    ticks2 = self._read_ticks(pid)
+                    cpu_pct = round(max((ticks2 - ticks1[pid]) / 100 / 0.1 * 100, 0), 2) if pid in ticks1 else 0
+                    records.append({'pid': pid, 'name': name, 'cpu': cpu_pct, 'mem': mem_pct})
+                except: continue
+        except: pass
+    else:
+        try:
+            out = subprocess.run(['ps', '-eo', 'pid,%cpu,%mem,comm', '--no-headers'], capture_output=True, text=True).stdout
+            for line in out.split('\n'):
+                parts = line.split()
+                if len(parts) >= 4: records.append({'pid': parts[0], 'cpu': float(parts[1]), 'mem': float(parts[2]), 'name': parts[3]})
+        except: pass
+    return records
+
+def _read_ticks(self, pid):
+    try:
+        content = open(f'/proc/{pid}/stat').read().rsplit(')', 1)[-1].split()
+        return int(content[11]) + int(content[12])
+    except: return None
+
+def _check_files(self, path, update):
+    anomalies = []
+    hashes = {}
+    for f in Path(path).rglob('*'):
+        if any(p in str(f) for p in self.config['exclude_patterns']): continue
+        try: hashes[str(f)] = hashlib.sha256(open(f, 'rb').read()).hexdigest()
+        except: continue
+    for fp, old in self.baseline.items():
+        if fp in hashes:
+            if hashes[fp] != old: anomalies.append({'type': 'file_mod', 'severity': 'MEDIUM', 'detail': f"Modified: {fp}"})
+        else: anomalies.append({'type': 'file_del', 'severity': 'LOW', 'detail': f"Deleted: {fp}"})
+    for fp in hashes:
+        if fp not in self.baseline: anomalies.append({'type': 'file_new', 'severity': 'LOW', 'detail': f"New: {fp}"})
+    if update: self.baseline = hashes; self._save_baseline(hashes)
+    return anomalies
+
+def _check_network(self):
+    anomalies = []
+    expected = set(self.config['expected_ports'])
+    if self.is_linux:
+        try:
+            lines = open('/proc/net/tcp').readlines()[1:]
+            ports = set()
+            for line in lines:
+                parts = line.split()
+                port = int(parts[1].split(':')[1], 16)
+                state = parts[3]
+                if state == '0A' and port not in expected and port not in ports:
+                    ports.add(port); anomalies.append({'type': 'listen_port', 'severity': 'MEDIUM', 'detail': f"Port {port} listening"})
+        except: pass
+    return anomalies
+
+def _assess_threat(self, anomalies):
+    high = sum(1 for a in anomalies if a.get('severity') == 'HIGH')
+    medium = sum(1 for a in anomalies if a.get('severity') == 'MEDIUM')
+    return 'CRITICAL' if high >= 3 else 'HIGH' if high >= 1 or medium >= 5 else 'MEDIUM' if medium >= 1 else 'LOW'
+
+def report(self, results):
+    txt = f"{'='*60}\n{results['app']} v{results['version']}\nCopyright (c) 2026 {results['author']}\n{'='*60}\n"
+    txt += f"Scan: {results['path']} | {results['timestamp']} | Threat: {results['threat']}\nAnomalies: {len(results['anomalies'])}\n\n"
+    for i, a in enumerate(results['anomalies'], 1): txt += f"  {i}. [{a.get('severity')}] {a.get('detail')}\n"
+    txt += f"\n{'='*60}\n"
+    return txt
+
+def _export(self, results, formats):
+    if 'json' in formats: json.dump(results, open('report.json', 'w'), indent=4)
+    if 'csv' in formats:
+        with open('report.csv', 'w', newline='') as f:
+            w = csv.writer(f); w.writerow(['type','severity','detail']); [w.writerow([a['type'],a['severity'],a['detail']]) for a in results['anomalies']]
+    if 'html' in formats:
+        with open('report.html', 'w') as f:
+            f.write(f'<html><body><h1>{results["threat"]} - {len(results["anomalies"])} anomalies</h1>')
+            for a in results['anomalies']: f.write(f'<p>{a["severity"]}: {a["detail"]}</p>')
+            f.write('</body></html>')
+
+def maybe_send_alert(self, results):
+    cfg = self.config.get('email_alerts', {})
+    if not cfg.get('enabled'): return False
+    required = ['smtp_host', 'smtp_user', 'smtp_password', 'from_addr', 'to_addr']
+    if not all(cfg.get(k) for k in required): return False
+    msg = MIMEText(self.report(results)); msg['Subject'] = f"[{results['threat']}] Alert"; msg['From'] = cfg['from_addr']; msg['To'] = cfg['to_addr']
+    try:
+        with smtplib.SMTP(cfg['smtp_host'], cfg['smtp_port'], timeout=15) as server:
+            server.starttls(); server.login(cfg['smtp_user'], cfg['smtp_password']); server.sendmail(cfg['from_addr'], [cfg['to_addr']], msg.as_string())
+        return True
+    except Exception as e: logger.error(f"Email failed: {e}"); return False
+
+def watch(self, path='.', interval=None, formats=None):
+    interval = interval or self.config['watch_interval']
+    formats = formats or ['json']
+    print(f"Watching '{path}' every {interval}s (Ctrl+C to stop)")
+    try:
+        while True:
+            r = self.scan_system(path); print(self.report(r)); self._export(r, formats); self.maybe_send_alert(r); time.sleep(interval)
+    except KeyboardInterrupt: print("Stopped.")def main():
+    """Entry point for Debugger - System Security Analyzer"""
+    parser = argparse.ArgumentParser(description='Debugger - System Security Analyzer')
+    parser.add_argument('path', nargs='?', default='.', help='Path to scan (default: current directory)')
+    parser.add_argument('--config', default='config.json', help='Config file path')
+    parser.add_argument('--baseline', default='baseline.json', help='Baseline file path')
+    parser.add_argument('--watch', action='store_true', help='Continuous watch mode')
+    parser.add_argument('--interval', type=int, default=None, help='Watch interval in seconds')
+    parser.add_argument('--format', nargs='+', default=['json'], choices=['json', 'csv', 'html'], help='Report formats')args = parser.parse_args()
+analyzer = SecurityAnalyzer(baseline=args.baseline, config=args.config)
+
+if args.watch:
+    # Watch mode: continuous monitoring
+    print(f"Starting watch mode on '{args.path}' every {args.interval or '300'}s")
+    analyzer.watch(args.path, interval=args.interval, formats=args.format)
+else:
+    # Single scan mode
+    print("Starting system scan...")
+    results = analyzer.scan_system(args.path)
+    print(analyzer.report(results))
+    analyzer._export(results, args.format)
+    analyzer.maybe_send_alert(results)if __name__ == '__main__':
+    main()
+
